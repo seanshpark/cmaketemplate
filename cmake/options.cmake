@@ -43,5 +43,10 @@ foreach(FLAG ${FLAGS_COMMON})
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FLAG}")
 endforeach()
 
+# add cxx flags
+foreach(FLAG ${FLAGS_CXXONLY})
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FLAG}")
+endforeach()
+
 # ignore warings
 set(ignoreUnusedWarnings "${CMAKE_TOOLCHAIN_FILE}")
