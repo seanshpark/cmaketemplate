@@ -24,7 +24,14 @@ SET(CMAKE_C_COMPILER   arm-linux-gnueabihf-gcc)
 SET(CMAKE_CXX_COMPILER arm-linux-gnueabihf-g++)
 
 # where is the target environment
-SET(CMAKE_FIND_ROOT_PATH $ENV{ROOTFS_ARM})
+set(ROOTFS_ARM $ENV{ROOTFS_ARM})
+set(CMAKE_FIND_ROOT_PATH ${ROOTFS_ARM})
+set(CMAKE_SHARED_LINKER_FLAGS
+    "${CMAKE_SHARED_LINKER_FLAGS} --sysroot=${ROOTFS_ARM}"
+    CACHE INTERNAL "" FORCE)
+set(CMAKE_EXE_LINKER_FLAGS
+    "${CMAKE_EXE_LINKER_FLAGS} --sysroot=${ROOTFS_ARM}"
+    CACHE INTERNAL "" FORCE)
 
 # search for programs in the build host directories
 SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
