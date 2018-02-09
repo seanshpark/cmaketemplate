@@ -46,6 +46,7 @@ this_system =  this_process + "-" + this_platform
 this_type = 'debug'
 this_cross = False
 do_clean = False
+do_parallel = False
 
 # set settings from parameters
 for arg in sys.argv :
@@ -56,6 +57,8 @@ for arg in sys.argv :
     elif arg == 'arm':
         this_system = 'armv7l-linux'
         this_cross = True
+    elif arg == 'p':
+        do_parallel = True
     elif arg == 'help':
         print_help()
         sys.exit()
@@ -80,6 +83,10 @@ cmake_defines  = get_cmake_defines('CMAKE_BUILD_TYPE', this_type)
 cmake_defines += get_cmake_defines('TARGET_PLATFORM', this_system)
 if this_cross:
     cmake_defines += get_cmake_cross(this_system)
+# parallel
+cmake_parallel = ""
+if do_parallel:
+    cmake_parallel = " -- -j4"
 
 # for debugging
 # print 'cmake_path = ' + cmake_path
@@ -98,4 +105,4 @@ if do_clean:
 # run cmake and make
 os.system('mkdir -p ' + cmake_path)
 os.system('cmake ' + cmake_base + ' ' + cmake_home + ' ' + cmake_defines)
-os.system('cmake --build ' + cmake_path)
+os.system('cmake --build ' + cmake_path + cmake_parallel)
