@@ -26,5 +26,5 @@ set(FLAGS_CXXONLY "-fpermissive"
 # c flags for debug, release build
 set(CMAKE_C_FLAGS_DEBUG     "-O0 -g -DDEBUG")
 set(CMAKE_CXX_FLAGS_DEBUG   "-O0 -g -DDEBUG")
-set(CMAKE_C_FLAGS_RELEASE   "-O2")
-set(CMAKE_CXX_FLAGS_RELEASE "-O2")
+set(CMAKE_C_FLAGS_RELEASE   "-O2 -DNDEBUG")
+set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG")
