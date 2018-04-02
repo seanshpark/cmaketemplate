@@ -9,6 +9,12 @@ How to use
 - Add to CMakeLists.txt or customize it
 - Run build.py
 
+Repo initialization for external projects
+```
+# run after cloning
+git submodule update --init --recursive
+```
+
 Build as native in x86_64 or arm
 ```
 ./build.py
