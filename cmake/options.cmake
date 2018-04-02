@@ -29,6 +29,13 @@ else()
   set(PROJ_BIN_OUT "${_PROJ_BIN_ROOT}/../.")
 endif()
 
+# test
+enable_testing()
+
+# google test
+set(GTEST_INC "${CMAKE_SOURCE_DIR}/external/googletest/googletest/include")
+set(GTEST_LIBS gtest gtest_main)
+
 # platform specific options
 include("cmake/option/option_${TARGET_PLATFORM}.cmake")
 

@@ -34,3 +34,16 @@ set_target_properties(${HELLOWORLD} PROPERTIES
 
 # copy data to execution folder
 # configure_file(something.data ${PROJ_BIN_OUT}/something.data)
+
+# test
+set(HELLOWORLD_TEST "helloworld_test")
+
+add_executable(${HELLOWORLD_TEST}
+    helloworld_test.cpp
+)
+target_include_directories(${HELLOWORLD_TEST} SYSTEM PRIVATE ${GTEST_INC})
+target_link_libraries(${HELLOWORLD_TEST} ${GTEST_LIBS})
+
+add_test(NAME ${HELLOWORLD_TEST}
+         COMMAND ${HELLOWORLD_TEST}
+)

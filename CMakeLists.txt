@@ -18,5 +18,8 @@ project(helloworld CXX)
 
 include(cmake/options.cmake)
 
+# gtest
+add_subdirectory(external/googletest/googletest)
+
 # include src folder
 add_subdirectory(src)

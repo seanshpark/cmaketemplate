@@ -24,6 +24,7 @@ def print_help():
     print '    arm: cross compilation for arm on x86/64 host'
     print '         you need to create ARM Rootfs and'
     print '         set ROOTFS_ARM environment to that folder'
+    print '   test: run tests after build'
     print '  clean: clean output before building'
     print ''
     return
@@ -47,11 +48,14 @@ this_type = 'debug'
 this_cross = False
 do_clean = False
 do_parallel = False
+do_test = False
 
 # set settings from parameters
 for arg in sys.argv :
     if arg == 'release':
         this_type = arg
+    elif arg == 'test':
+        do_test = True
     elif arg == 'clean':
         do_clean = True
     elif arg == 'arm':
@@ -106,3 +110,6 @@ if do_clean:
 os.system('mkdir -p ' + cmake_path)
 os.system('cmake ' + cmake_base + ' ' + cmake_home + ' ' + cmake_defines)
 os.system('cmake --build ' + cmake_path + cmake_parallel)
+
+if do_test:
+    os.system('cmake --build ' + cmake_path + ' -- test')
